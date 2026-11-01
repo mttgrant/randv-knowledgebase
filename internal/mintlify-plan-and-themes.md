@@ -34,7 +34,27 @@ Starter also includes the web editor, Git sync, search, the MCP server, the API 
 - Password access needs Pro. It is one shared password with no per-user tracking.
 - Group-based restrictions need OAuth or JWT, which means Enterprise.
 
+## How the team and devs edit
+
+Both routes work on the same repo. Starter includes the web editor and Git sync.
+
+| | Team | Devs |
+|---|---|---|
+| Where | Web editor at https://app.mintlify.com | Local files, previewed with `mint dev` |
+| Going live | Edits autosave, then **Publish** commits to `main` and deploys | `git push` to `main` deploys |
+| With review | **Create branch**: edits commit automatically and open a pull request | Normal branch and pull request |
+
+- If a push lands while someone is editing, the editor merges it into their open pages. If both touched the same part of a page, it keeps both versions and highlights them for the editor to choose.
+- Publish goes straight to the live site when `main` has no branch protection. With pull requests required, the team must use **Create branch**.
+- Starter has no preview deployments, so a branch can't be checked on a preview link before merging.
+- Viewers don't see **Publish**, so each team member needs a role that can publish.
+
+Recommended before the team starts: require pull requests on `main`. Not done yet.
+
 ## Unconfirmed
+
+- Whether web editors need GitHub accounts. The docs don't state it; commits are signed by the Mintlify GitHub App unless a person links their own account.
+- Whether any editor branching or publishing feature differs by plan. The docs don't state it.
 
 - Whether read-only members count toward the 5 editor seats on Starter. This decides whether Starter works for the whole team. Neither the authentication docs nor the fields checked on the pricing page say.
 - Whether the "Powered by Mintlify" branding can be removed on Starter. No plan lists this directly. White labeling is Enterprise only.
@@ -77,3 +97,5 @@ First ones to try for a knowledgebase: `sequoia`, then `almond`.
 - https://www.mintlify.com/docs/customize/themes
 - https://www.mintlify.com/docs/organize/mintignore
 - https://www.mintlify.com/docs/deploy/preview-deployments
+- https://www.mintlify.com/docs/editor/branching-and-publishing
+- https://www.mintlify.com/docs/editor/publish
